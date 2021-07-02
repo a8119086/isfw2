@@ -40,7 +40,7 @@
             var username = document.getElementById('tf3').value;
             var nickname = document.getElementById('tf4').value;
 
-            var sql = `update Users set name="${username}", password="${password}", nickname='${nickname}' where id="${userid}";`;
+            var sql = `update Users set name="${username}", password="${password}", nickname='${nickname}' where student_id="${student_id}";`;
             var objects = await osql.connect(sql);
 
             document.getElementById('result').innerHTML = 'OK';
