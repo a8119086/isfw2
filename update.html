@@ -16,17 +16,18 @@
         });
 
         async function execSelect() {
-            var userid = osql.getParam('userid');
-            var sql = `select * from Users where id="${userid}";`;
+            var student_id = osql.getParam('student_id');
+            var sql = `select * from Users where student_id="${student_id}";`;
             var objects = await osql.connect(sql);
             if (objects.length <= 0) {
                 document.getElementById('result').innerHTML = 'not found';
                 return;
             }
             var user = objects[0];
-            document.getElementById('tf1').value = user.id;
+            document.getElementById('tf1').value = user.student_id;
             document.getElementById('tf2').value = user.password;
             document.getElementById('tf3').value = user.name;
+            document.getElementById('tf4').value = user.nickname;
         }
 
         function button2Pressed() {
@@ -34,11 +35,12 @@
         }
 
         async function execUpdate() {
-            var userid = document.getElementById('tf1').value;
+            var student_id = document.getElementById('tf1').value;
             var password = document.getElementById('tf2').value;
             var username = document.getElementById('tf3').value;
+            var nickname = document.getElementById('tf4').value;
 
-            var sql = `update Users set name="${username}", password="${password}" where id="${userid}";`;
+            var sql = `update Users set name="${username}", password="${password}", nickname='${nickname}' where id="${userid}";`;
             var objects = await osql.connect(sql);
 
             document.getElementById('result').innerHTML = 'OK';
@@ -49,11 +51,12 @@
 
 <body>
     <h1>User変更</h1>
-    userid:<input id="tf1" value="" type="textfield" disabled>
+    学籍番号:<input id="tf1" value="" type="textfield" disabled>
     <br>
-    password:<input id="tf2" value="" type="password">
+    パスワード:<input id="tf2" value="" type="password">
     <br>
-    name:<input id="tf3" value="" type="textfield">
+    名前:<input id="tf3" value="" type="textfield">
+    ニックネーム:<input id="tf4" value="" type="textfield">
     <button onclick="button2Pressed()">変更</button>
 
     <p id="result"></p>
