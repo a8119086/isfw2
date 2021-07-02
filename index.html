@@ -15,7 +15,7 @@
             var userid = document.getElementById('tf1').value;
             var password = document.getElementById('tf2').value;
 
-            var sql = `select * from Users where id="${userid}";`;
+            var sql = `select * from Users where id="${student_id}";`;
             var objects = await osql.connect(sql);
             if (objects.length <= 0) {
                 document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
@@ -28,6 +28,7 @@
 
             sessionStorage.setItem('userid', objects[0].id);
             sessionStorage.setItem('username', objects[0].name);
+            sessionStorage.setItem('nicname', objects[0].nicname);
 
             location.href = 'usertop.html';
         }
@@ -36,7 +37,7 @@
 </head>
 
 <body>
-    <h1>ユーザ管理　アプリケーション　v3</h1>
+    <h1>ざわわアプリケーション</h1>
     <div>
         <h2>ログイン</h2>
         userid:<input id="tf1" value="" type="textfield">
