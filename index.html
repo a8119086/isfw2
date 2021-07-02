@@ -12,10 +12,10 @@
         osql.requireLogin();
 
         async function buttonPressed() {
-            var userid = document.getElementById('tf1').value;
+            var student_id = document.getElementById('tf1').value;
             var password = document.getElementById('tf2').value;
 
-            var sql = `select * from Users where id="${student_id}";`;
+            var sql = `select * from Users where student_id="${student_id}";`;
             var objects = await osql.connect(sql);
             if (objects.length <= 0) {
                 document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
@@ -26,9 +26,9 @@
                 return;
             }
 
-            sessionStorage.setItem('userid', objects[0].id);
-            sessionStorage.setItem('username', objects[0].name);
-            sessionStorage.setItem('nicname', objects[0].nicname);
+            sessionStorage.setItem('student_id', objects[0].student_id);
+            sessionStorage.setItem('name', objects[0].name);
+            sessionStorage.setItem('nickname', objects[0].nickname);
 
             location.href = 'usertop.html';
         }
