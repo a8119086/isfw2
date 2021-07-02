@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        async function buttonPressed() {
+            var userid = document.getElementById('tf1').value;
+            var password = document.getElementById('tf2').value;
+
+            var sql = `select * from Users where id="${student_id}";`;
+            var objects = await osql.connect(sql);
+            if (objects.length <= 0) {
+                document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
+                return;
+            }
+            if (objects[0].password != password) {
+                document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
+                return;
+            }
+
+            sessionStorage.setItem('userid', objects[0].id);
+            sessionStorage.setItem('username', objects[0].name);
+            sessionStorage.setItem('nicname', objects[0].nicname);
+
+            location.href = 'usertop.html';
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>講義動画一覧</h1>
+    <hr>
+    <h2>データベース基礎</h2><a href></a>
+    <p>第一回</p>
+
+
+    <h2>情報システム演習</h2>
+    <div>
+       
+        
+        <br>
+        
+        <br>
+    
+        <p id="result"></p>
+    </div>
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
+</body>
+
+</html>
