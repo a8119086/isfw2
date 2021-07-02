@@ -10,15 +10,27 @@
 
     <script>
         osql.requireLogin();
+
+        function button1Pressed() {
+            var password = document.getElementById('tf1').value;
+            if(password == 1111){
+                 document.getElementById('usertop').innerHTML = '<ul><li> <a href="list.html">ユーザ一覧</a></li ></ul>';   
+            }else{
+                document.getElementById('usertop').innerHTML ='<p>パスワードが違います</p>'
+            }
+            }
+
     </script>
 
 </head>
 
 <body>
     <h1>管理者トップ</h1>
-    <ul>
-        <li><a href="list.html">ユーザ一覧</a></li>
-    </ul>
+    パスワード:<input id="tf1" value="" type="password">
+    <button onclick="button1Pressed()">送信</button>
+    <div id="usertop">
+    </div>
+    
 </body>
 
 </html>
