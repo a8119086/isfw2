@@ -18,7 +18,7 @@
         function admincheck() {
             var admin_flag = sessionStorage.getItem('admin_flag');
 
-            if (admin_flag) {
+            if (admin_flag == "true") {
                 //admin_flagがtrueだった時の処理をここに書く
                 document.getElementById("admin").innerHTML = '<p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>'
             }else{
