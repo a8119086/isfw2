@@ -30,6 +30,17 @@
             sessionStorage.setItem('name', objects[0].name);
             sessionStorage.setItem('nickname', objects[0].nickname);
 
+            var admin_flag;
+            
+            //管理者（先生）のstudent_idだったらadmin_flagをtrueに
+            if (student_id == 1111) {
+                admin_flag = true;
+            } else {
+                admin_flag = false;
+            }
+
+            sessionStorage.setItem('admin_flag', admin_flag);
+
             location.href = 'usertop.html';
         }
     </script>

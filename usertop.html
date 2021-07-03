@@ -16,20 +16,13 @@
             });
 
         function admincheck() {
-            var student_id = sessionStorage.getItem('student_id');
-            var admin_flag;
-
-            //管理者（先生）のstudent_idだったらadmin_flagをtrueに
-            if (student_id == 1111) {
-                admin_flag = true;
-            } else {
-                admin_flag = false;
-            }
+            var admin_flag = sessionStorage.getItem('admin_flag');
 
             if (admin_flag) {
                 //admin_flagがtrueだった時の処理をここに書く
                 document.getElementById("admin").innerHTML = '<p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>'
-               
+            }else{
+                //admin_flagがfalseだった時の処理をここに書く
             }
         }
 
