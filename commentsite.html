@@ -31,7 +31,7 @@
             var url = objects[0].URL;
             document.getElementById('name').innerHTML = moviename;
 
-            document.getElementById('youtube').innerHTML = '<iframe src="https://www.youtube.com/embed/vYfoxJlqRDQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            document.getElementById('youtube').innerHTML = '<iframe src="' + url + '" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         }
 
         async function comment() {
