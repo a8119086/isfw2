@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <script>
+        var player;
+        function onYouTubeIframeAPIReady() {
+            console.log('API ready');
+            player = new YT.Player('player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(obj) {
+            console.log('ready');
+            console.log(obj);
+        }
+
+        function onPlayerStateChange(obj) {
+            console.log('changed');
+            console.log(obj);
+        }
+
+        function x() {
+            player.seekTo(23, true);
+        }
+    </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+</head>
+
+<body>
+    <iframe id="player" width="1080" height="630"
+        src="https://www.youtube.com/embed/JMrBZdTrpHc?start=11&rel=0&enablejsapi=1" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    <button onclick="x()">x</button>
+
+</body>
+
+</html>

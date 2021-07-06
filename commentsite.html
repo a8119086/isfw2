@@ -18,10 +18,14 @@
         });
 
 
-        function movies() {
-            var movie_id = osql.getParam('movie_id');
+        async function movies() {
+            var movie_id = parseInt(osql.getParam('movie_id'));
+            console.log(movie_id);
             var sql = `select * from Classes inner join Movies on Classes.id=Movies.class_id where Movies.id="${movie_id}";`;
             var objects = await osql.connect(sql);
+            
+            var title = objects[0].name;
+            document.getElementById('title').innerHTML = title;
 
             var moviename = objects[0].title;
             var url = objects[0].URL;
@@ -30,7 +34,7 @@
             document.getElementById('youtube').innerHTML = '<iframe src="https://www.youtube.com/embed/vYfoxJlqRDQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         }
 
-        function comment() {
+        async function comment() {
 
         }
 
@@ -39,8 +43,8 @@
 </head>
 
 <body>
-    <h1 id="title">データベース基礎</h1>
-    <p id="name">第一回</p>
+    <h1 id="title"></h1>
+    <p id="name"></p>
     <hr>
     <div>
         <p id="youtube"></p>
