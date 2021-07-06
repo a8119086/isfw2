@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        $().ready(function () {
+                admincheck();
+                getClasses();
+            });
+        
+        
+        async function getClasses() {
+            var sql = `select * from Classes`;
+            var objects = await osql.connect(sql);
+            var html
+
+            for (var i = 0; i < objects.length; i++) {
+                object = objects[i];
+                
+                html += `<option value="${i + 1}">${object.name}</option>`
+            }
+
+            document.getElementById("course").innerHTML = html;
+        }
+        
+        async function getMovies() {
+            var movie = document.getElementById("course").value
+            var sql = `select * from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${movie};`;
+            var objects = await osql.connect(sql);
+            var html
+
+            for (var i = 0; i < objects.length; i++) {
+                object = objects[i];
+                html += `<li><a href="${object.URL}">${object.title}</a></li>`
+
+            }
+
+            document.getElementById("movies").innerHTML = html;
+        }
+
+        function admincheck() {
+            var admin_flag = sessionStorage.getItem('admin_flag');
+
+            if (admin_flag == "true") {
+                //admin_flagがtrueだった時の処理をここに書く
+            } else {
+                //admin_flagがfalseだった時の処理をここに書く
+            }
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>ユーザトップ</h1>
+    <select id = "course" name="course" onchange="getMovies()">
+    </select>
+    <ul id="movies"></ul>
+
+
+
+</body>
+
+</html>
