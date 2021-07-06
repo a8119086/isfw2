@@ -33,13 +33,16 @@
         
         async function getMovies() {
             var movie = document.getElementById("course").value
+            console.log(movie)
             var sql = `select * from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${movie};`;
             var objects = await osql.connect(sql);
             var html
 
             for (var i = 0; i < objects.length; i++) {
                 object = objects[i];
-                html += `<li><a href="${object.URL}">${object.title}</a></li>`
+                var movie_id = i+1;
+                var addHtml = "?movie_id=" + movie_id;
+                html += `<li><a href="commentsite.html/${addHtml}">${object.title}</a></li>`
 
             }
 
@@ -65,8 +68,6 @@
     <select id = "course" name="course" onchange="getMovies()">
     </select>
     <ul id="movies"></ul>
-
-
 
 </body>
 
