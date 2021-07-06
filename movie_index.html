@@ -34,15 +34,15 @@
         async function getMovies() {
             var movie = document.getElementById("course").value
             console.log(movie)
-            var sql = `select * from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${movie};`;
+            var sql = `select Movies.id as movie_id, title from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${movie};`;
             var objects = await osql.connect(sql);
             var html
 
             for (var i = 0; i < objects.length; i++) {
                 object = objects[i];
-                var movie_id = i+1;
+                var movie_id = object.movie_id;
                 var addHtml = "?movie_id=" + movie_id;
-                html += `<li><a href="commentsite.html/${addHtml}">${object.title}</a></li>`
+                html += `<li><a href="commentsite.html${addHtml}">${object.title}</a></li>`
 
             }
 
