@@ -33,7 +33,6 @@
         
         async function getMovies() {
             var course_id = document.getElementById("course").value
-            console.log(movie)
             var sql = `select Movies.id as movie_id, title from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${course_id};`;
             var objects = await osql.connect(sql);
             var html
