@@ -12,10 +12,44 @@
         osql.requireLogin();
 
         $(document).ready(function () {
-            execSelect();
+            admincheck() ;
         });
 
-        async function execSelect() {
+        function admincheck() {
+                var admin_flag = sessionStorage.getItem('admin_flag');
+
+                if (admin_flag == "true") {
+                    admin_true()
+                    //admin_flagがtrueだった時の処理をここに書く
+                    document.getElementById("admin").innerHTML = '<p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>'
+                } else {
+                    admin_false()
+                    //admin_flagがfalseだった時の処理をここに書く
+                }
+
+            }
+
+        async function admin_false() {
+            var student_id = sessionStorage.getItem('student_id');
+            var sql = `select * from Users where student_id	= '${student_id}'`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var html = '';
+            html = html + '<table border="1">';
+            for (var i = 0; i < objects.length; i++) {
+                html = html + '<tr>';
+                var object = objects[i];
+                html = html + '<td>' + object.student_id + '</td>';
+                html = html + '<td>' + object.name + '</td>';
+                html = html + '<td>' + object.nickname + '</td>';
+                html = html + '<td>' + '<a href="update.html?student_id=' + object.student_id + '">変更</a>' + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('result').innerHTML = html;
+        }
+
+        async function admin_true(){
             var sql = 'select * from Users';
             var objects = await osql.connect(sql);
             console.log(objects);
@@ -32,6 +66,8 @@
             }
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
+
+
         }
     </script>
 
