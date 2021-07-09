@@ -148,3 +148,10 @@ ol.list1 li:before{
   -webkit-box-shadow: 0 5px 0 #e6d900;
   box-shadow: 0 5px 0 #e6d900;
 }
+
+.footer{
+  text-align: center;
+  padding:20px ;
+  margin-top: auto;
+  background-color: #FFCC99	;
+}
