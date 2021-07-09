@@ -16,6 +16,10 @@
   border: none; /*境界線の打ち消し*/
 }
 
+#comments input{
+  border: 2px solid #2260d4;  /* 枠線 */
+  padding: 0.5em;          /* 内側の余白量 */
+}
 /* movie_index プルダウン */
 
 .cp_ipselect {
