@@ -1,0 +1,108 @@
+/* commentsiteのcss */
+
+#showyoutube{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+}
+
+#showyoutube iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /*境界線の打ち消し*/
+}
+
+
+/* movie_index プルダウン */
+
+.cp_ipselect {
+  overflow: hidden; /* はみ出さない */
+  width: 15%; /* 横のサイズ */
+  /* margin: 2em auto;  */
+  text-align:right; /* 場所 */
+}
+.cp_ipselect select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer; /* カーソルを矢印に */
+  text-indent: 0.01px; 
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+  display: none;
+}
+
+.cp_ipselect.cp_sl04 {
+  position: relative;
+  border-radius: 2px;
+  border: 2px solid #2260d4;
+  /* border-radius: 50px; プルダウンを丸くする */
+  background: #ffffff;
+}
+.cp_ipselect.cp_sl04::before {
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #2260d4;
+  pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+  padding: 8px 38px 8px 8px;
+  /* color: #da3c41; */
+}
+
+
+/* リスト */
+
+ol.list1{
+  counter-reset:list;
+  list-style-type:none;
+  font: 14px/1.6 'arial narrow', sans-serif;
+  padding:0;
+}
+ol.list1 li{
+  position:relative;
+  padding: 0 0 0 20px;
+  margin: 7px 0 7px 0px;
+  font-weight: bold;
+  font-size:14px;
+  line-height: 30px;
+  border-bottom: dashed 1px #2260d4;
+}
+ol.list1 li:before{
+  counter-increment: list;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  height: 0;
+  width: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid #2260d4;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
