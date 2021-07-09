@@ -23,13 +23,14 @@
             var objects = await osql.connect(sql);
             var html
 
+            
             for (var i = 0; i < objects.length; i++) {
                 object = objects[i];
                 
                 html += `<option value="${i + 1}">${object.name}</option>`
             }
 
-            document.getElementById("course").innerHTML = html;
+            document.getElementById("course").innerHTML = '<option value="">授業を選択</option>' + html;
         }
         
         async function getMovies() {
@@ -71,6 +72,7 @@
     <h1>ユーザトップ</h1>
     <div class="cp_ipselect cp_sl04">
     <select id = "course" name="course" onchange="getMovies()">
+        
     </select>
     </div>
     <ul id="movies"></ul>
