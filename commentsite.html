@@ -45,16 +45,13 @@
             doSelect();
         });
 
-        async function getTitle() {//タイトルを取得
+        $().ready(function () {
+                playMovie(); //動画再生する
+            });
+        async function playMovie() {
             var movie_id = parseInt(osql.getParam('movie_id'));
-            console.log(movie_id);
             var sql = `select * from Classes inner join Movies on Classes.id=Movies.class_id where Movies.id="${movie_id}";`;
             var objects = await osql.connect(sql);
-
-            var title = objects[0].name;
-            document.getElementById('title').innerHTML = title;
-
-            var moviename = objects[0].title;
             var url = objects[0].URL;
             document.getElementById('name').innerHTML = moviename;
         }
