@@ -115,4 +115,37 @@ ol.list1 li:before{
 
 .rogin{
   text-align: center;
+  background: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+  width:50%;
+
+  margin: auto;
+  }
+
+
+
+.rogin .boxtitle{
+  font-size: 2em;
+  background-color: #5fc2f5 ;
+  padding : 4px;
+  text-align: center;
+  color: #FFF;
+}
+
+.rogin_item{
+  text-align: center;
+}
+
+
+.rogin_button{
+  font-size: medium;
+  font-weight: bold;
+  background-color: yellow;
+  border-radius: 50%;
+  line-height: 100px;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  -webkit-box-shadow: 0 5px 0 #e6d900;
+  box-shadow: 0 5px 0 #e6d900;
 }
