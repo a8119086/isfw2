@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        $().ready(function () {
+                getClasses();
+            });
+        
+
+        async function getClasses() {
+            var sql = `select * from Classes`;
+            var objects = await osql.connect(sql);
+            console.log(objects)
+            var html
+            for (var i = 0; i < objects.length; i++) {
+                object = objects[i];
+
+                html += `<option value="${i + 1}">${object.name}</option>`
+            }
+            document.getElementById("course").innerHTML = '<option value="">授業を選択</option>' + html;
+        }
+
+        async function button1Pressed() {
+            
+            var course_id = document.getElementById('course').value;
+            var title = document.getElementById('title').value;
+            var URL = document.getElementById('URL').value;
+            
+
+            var sql = `insert into Movies (class_id	, URL, title, datetime) values("${course_id}", "${URL}", "${title}", now());`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            document.getElementById('result').innerHTML = 'OK';
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>動画登録</h1>
+    <select id="course" name="course" >
+        <option value="">授業を選択</option>
+    </select>
+    <br>
+    タイトル:<input id="title" value="" type="textfield">
+    <br>
+    (埋め込み用)URL:<input id="URL" value="" type="textfield">
+    <button onclick="button1Pressed()">登録</button>
+    <br>
+    <p id="result"></p>
+</body>
+
+</html>
