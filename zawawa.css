@@ -105,4 +105,14 @@ ol.list1 li:before{
   transform: translateY(-50%);
 }
 
+#zawawatop{
+  color: #364e96;
+  text-align: center;
+  padding: 10px;
+  border-top: solid 3px #364e96;
+  border-bottom: solid 3px #364e96;
+}
 
+.rogin{
+  text-align: center;
+}
