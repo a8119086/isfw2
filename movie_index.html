@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <!-- <link rel="stylesheet" href="zawawa.css"> -->
 
     <script>
         osql.requireLogin();
@@ -41,7 +42,7 @@
                 object = objects[i];
                 var movie_id = object.movie_id;
                 var addHtml = "?movie_id=" + movie_id;
-                html += `<li><a href="commentsite.html${addHtml}">${object.title}</a></li>`
+                html += `<ol  class="list1"><li><a href="commentsite.html${addHtml}">${object.title}</a></li></ol>`
 
             }
 
@@ -68,8 +69,10 @@
 
 <body>
     <h1>ユーザトップ</h1>
+    <div class="cp_ipselect cp_sl04">
     <select id = "course" name="course" onchange="getMovies()">
     </select>
+    </div>
     <ul id="movies"></ul>
     <div id = "admin"></div>
 
