@@ -78,7 +78,7 @@
         async function inComment(to_id) {　// コメントを取得する
             var movie_id = parseInt(osql.getParam('movie_id'));
             var student_id = sessionStorage.getItem('student_id');
-            
+
             if (to_id == 0) { //新規コメントだった時
                 var time = document.getElementById('selecttime').value;
                 var newcomment = document.getElementById('newcomment').value;
@@ -112,7 +112,9 @@
                 var time = object.point_time;
                 var separate = time.split(':');//「, (カンマ)」で区切って分割する
                 console.log(separate);
-                html = html + `<li><button onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id})">返信</button><p id="reply${i}" ></p></li>`;
+                if (object.to_id == 0) {
+                    html = html + `<li><button onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id})">返信</button><p id="reply${i}" ></p></li>`;
+                }
             }
             html = html + '</ul>';
             document.getElementById('result').innerHTML = html;
