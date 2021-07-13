@@ -164,7 +164,7 @@ ol.list1 li:before{
   background-color: #FFCC99	;
 }
 
-.usertop{
+.top{
   color: #FF9900	;
   text-align: center;
   padding: 10px;
@@ -228,3 +228,60 @@ ol.list1 li:before{
 .btn-flat-bottom-border:hover {
   background: #91b5fb;
 }
+
+#name {
+  border-bottom: solid 3px #ffc778;
+  position: relative;
+}
+#name:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px skyblue;
+  bottom: -3px;
+  width: 50%;
+}
+
+/*その他と主な共通部分は省略*/
+
+#reroad {
+  border-radius: 0;
+}
+
+#reroad:before,
+#reroad:after {
+  position: absolute;
+
+  width: 100%;
+  height: 2px;
+
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+
+  background: #000;
+}
+
+#reroad:before {
+  top: 0;
+  left: 0;
+}
+
+#reroad:after {
+  right: 0;
+  bottom: 0;
+}
+#reroad:hover:before,
+#reroad:hover:after {
+  width: 0;
+}
+
+.icon{
+  padding-left: 20px;
+	line-height: 1.6em;
+	background: url(人物ボタン.png) left 0px top 3px no-repeat;
+	background-size: 30px auto;}
+
+  #registerUser{
+    text-align: center;
+  }
