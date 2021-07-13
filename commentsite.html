@@ -86,7 +86,7 @@
             var student_id = sessionStorage.getItem('student_id');
 
             if (to_id == 0) { //新規コメントだった時
-                var time = player.getCurrentTime();
+                var time = Math.round(player.getCurrentTime());
                 console.log(time);
                 var newcomment = document.getElementById('newcomment').value;
             } else { //リプライだった時
@@ -99,7 +99,6 @@
             var objects = await osql.connect(sql);
             console.log(objects);
 
-            document.getElementById('selecttime').value = '';
             document.getElementById('newcomment').value = '';
         }
 
