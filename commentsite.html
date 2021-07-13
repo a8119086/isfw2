@@ -106,7 +106,7 @@
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
-            html = html + '<ul>';
+            html = html + `<ul>`;
             for (var i = 0; i < objects.length; i++) {
                 var object = objects[i];
                 var time = object.point_time;
@@ -120,7 +120,7 @@
 
                     html = html + `<li><button onclick="mySeekTo(${sum})">${time}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
                     for (var j = 0; j < objects.length; j++) {
-                        html = html + `<ol>`;
+                        html = html + `<ol >`;
                         if (objects[i].id == objects[j].to_id) {
                             // console.log(objects[j].nickname);
                             // console.log(objects[j].comment);
