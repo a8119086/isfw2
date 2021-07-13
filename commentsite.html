@@ -146,6 +146,7 @@
                 }
                 html = html + '</ul>';
                 document.getElementById('result').innerHTML = html;
+               
                 
             } else {
                 //生徒だったらニックネーム表示
@@ -179,14 +180,13 @@
                 }
                 html = html + '</ul>';
                 document.getElementById('result').innerHTML = html;
+                
             }
-
-            async function replyButton(i, to_id) { //リプライする
-                document.getElementById(`reply${i}`).innerHTML = `<input id='replycomment' value="返信を入力してください" type="textfield" title="selecttime" style="color:#888;" onfocus="inputFocus(this)" onblur="inputBlur(this)"> <button onclick="inComment(${to_id})">送信</button>`;
-            }
-
             
-            
+        }
+
+        async function replyButton(i, to_id) { //リプライする
+            document.getElementById(`reply${i}`).innerHTML = `<input id='replycomment' value="返信を入力してください" type="textfield" title="selecttime" style="color:#888;" onfocus="inputFocus(this)" onblur="inputBlur(this)"> <button onclick="inComment(${to_id})">送信</button>`;
         }
 
 
