@@ -113,7 +113,7 @@
                 var separate = time.split(':');//「, (カンマ)」で区切って分割する
                 console.log(separate);
                 if (object.to_id == 0) {
-                    html = html + `<li><button onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id})">返信</button><p id="reply${i}" ></p></li>`;
+                    html = html + `<li><button id= onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id})">返信</button><p id="reply${i}" ></p></li>`;
                 }
             }
             html = html + '</ul>';
@@ -131,13 +131,13 @@
 
 <body>
     <p id="showyoutube"></p>
-    <button onclick="mySeekTo(23)">00:23</button>
+    <button onclick="mySeekTo(23)" class='btn-square-little-rich'>00:23</button>
     <div id="comments">
         <input id="selecttime" value="00:00" type="textfield" title="selecttime" style="color:#888;"
             onfocus="inputFocus(this)" onblur="inputBlur(this)">
         <input id="newcomment" value="コメントを入力する" type="textfield" title="selecttime" style="color:#888;"
             onfocus="inputFocus(this)" onblur="inputBlur(this)">
-        <button onclick="inComment(0)">コメントする</button>
+        <button onclick="inComment(0)"  class="btn-flat-bottom-border">コメントする</button>
     </div>
     <button onclick="reroad()" id="reroad">再読み込み</button>
     <p id="result">Roading...</p>
