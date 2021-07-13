@@ -111,9 +111,21 @@
                 var object = objects[i];
                 var time = object.point_time;
                 var separate = time.split(':');//「, (カンマ)」で区切って分割する
-                console.log(separate);
+                // console.log(separate);
+                console.log(objects[i].id);
                 if (object.to_id == 0) {
-                    html = html + `<li><button id= onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id})">返信</button><p id="reply${i}" ></p></li>`;
+                    html = html + `<li><button onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                    for (var j = 0; j < objects.length; j++) {
+                        html = html + `<ol>`;
+                        if (objects[i].id == objects[j].to_id) {
+                            // console.log(objects[j].nickname);
+                            // console.log(objects[j].comment);
+                            html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + objects[j].time + `</p>`;
+                        } else {
+                        }
+                        html = html + `</ol>`;
+                    }
+                    html = html + `</li>`;
                 }
             }
             html = html + '</ul>';
