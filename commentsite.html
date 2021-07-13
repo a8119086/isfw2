@@ -24,6 +24,12 @@
         src="${url}?enablejsapi=1" title="YouTube video player"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>`;
+        player = new YT.Player('player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
         function onYouTubeIframeAPIReady() {
             console.log('API ready');
@@ -46,9 +52,9 @@
             console.log(obj);
         }
 
-        function mySeekTo(sum) {
-            console.log(sum);
-            player.seekTo(sum, true);
+        function mySeekTo(separate) {
+            console.log(separate);
+            player.seekTo(separate, true);
         }
 
 
@@ -80,14 +86,15 @@
             var student_id = sessionStorage.getItem('student_id');
 
             if (to_id == 0) { //新規コメントだった時
-                var time = document.getElementById('selecttime').value;
+                var time = player.getCurrentTime();
+                console.log(time);
                 var newcomment = document.getElementById('newcomment').value;
             } else { //リプライだった時
                 var time = "";
                 var newcomment = document.getElementById('replycomment').value;
             }
-            console.log(newcomment);
-            console.log(student_id);
+            // console.log(newcomment);
+            // console.log(student_id);
             var sql = `insert into Comments (student_id, comment, movie_id, point_time, to_id, time) values("${student_id}", "${newcomment}", "${movie_id}", "${time}","${to_id}", now());`;
             var objects = await osql.connect(sql);
             console.log(objects);
@@ -102,7 +109,7 @@
 
         async function doSelect() { //コメント表示
             var movie_id = parseInt(osql.getParam('movie_id'));
-            var sql = `select * from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by point_time desc limit 20;`;
+            var sql = `select * from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by point_time asc limit 20;`;
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
@@ -112,13 +119,13 @@
                 var time = object.point_time;
                 var separate = time.split(':');//「, (カンマ)」で区切って分割する
                 // console.log(separate[0]);
-                var sum = parseInt(separate[0]) * 3600 + parseInt(separate[1]) * 60 + parseInt(separate[2]);
-                console.log(sum);
+                // var sum = parseInt(separate[0]) * 3600 + parseInt(separate[1]) * 60 + parseInt(separate[2]);
+                // console.log(sum);
                 console.log(objects[i].id);
                 
                 if (object.to_id == 0) {
 
-                    html = html + `<li><button onclick="mySeekTo(${sum})">${time}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                    html = html + `<li><button onclick="mySeekTo(${time})">${time}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
                     for (var j = 0; j < objects.length; j++) {
                         html = html + `<ol>`;
                         if (objects[i].id == objects[j].to_id) {
@@ -148,8 +155,6 @@
 <body>
     <p id="showyoutube"></p>
     <div id="comments">
-        <input id="selecttime" value="00:00:00" type="textfield" title="selecttime" style="color:#888;"
-            onfocus="inputFocus(this)" onblur="inputBlur(this)">
         <input id="newcomment" value="コメントを入力する" type="textfield" title="selecttime" style="color:#888;"
             onfocus="inputFocus(this)" onblur="inputBlur(this)">
         <button onclick="inComment(0)"  class="btn-flat-bottom-border">コメントする</button>
