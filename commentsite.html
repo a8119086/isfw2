@@ -118,14 +118,15 @@
                 var object = objects[i];
                 var time = object.point_time;
                 var separate = time.split(':');//「, (カンマ)」で区切って分割する
-                // console.log(separate[0]);
-                // var sum = parseInt(separate[0]) * 3600 + parseInt(separate[1]) * 60 + parseInt(separate[2]);
-                // console.log(sum);
+                
                 console.log(objects[i].id);
                 
                 if (object.to_id == 0) {
-
-                    html = html + `<li><button onclick="mySeekTo(${time})">${time}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                    var hour = Math.floor(time / 3600);
+                    var min = Math.floor((time % 3600)/60);
+                    var sec = Math.floor((time%3600)% 60);
+                    
+                    html = html + `<li><button onclick="mySeekTo(${time})">${hour}:${min}:${sec}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
                     for (var j = 0; j < objects.length; j++) {
                         html = html + `<ol >`;
                         if (objects[i].id == objects[j].to_id) {
