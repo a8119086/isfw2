@@ -228,3 +228,16 @@ ol.list1 li:before{
 .btn-flat-bottom-border:hover {
   background: #91b5fb;
 }
+
+#name {
+  border-bottom: solid 3px #ffc778;
+  position: relative;
+}
+#name:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px skyblue;
+  bottom: -3px;
+  width: 50%;
+}
