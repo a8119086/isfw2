@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" type="text/css" href="zawawa.css">
 
     <script>
 
@@ -51,19 +52,20 @@
 </head>
 
 <body>
-    <h1>ざわわアプリケーション</h1>
-    <div>
-        <h2>ログイン</h2>
-        学籍番号:<input id="tf1" value="" type="textfield">
+    <h1 id = 'zawawatop'>ざわわアプリケーション</h1>
+    <div class = 'rogin'>
+        <h2 class = 'boxtitle'>ログイン</h2>
+        <p class = 'rogin_item'>学籍番号<input id="tf1" value="" type="textfield"></p>
+        <p class='rogin_item'>パスワード<input id="tf2" value="" type="password"></p>
         <br>
-        パスワード:<input id="tf2" value="" type="password">
+        <button onclick="buttonPressed()" class = 'rogin_button'>ログイン</button>
         <br>
-        <button onclick="buttonPressed()">ログイン</button>
+        <br>
         <p id="result"></p>
     </div>
-    <hr>
-    <p><a href="register.html">新規登録</a></p>
-    <hr>
+   
+    <footer class = 'footer'><a href="register.html">新規登録</a></footer>
+   
     
 </body>
 

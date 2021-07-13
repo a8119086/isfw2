@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="zawawa.css">
 
     <script>
         osql.requireLogin();
@@ -32,18 +33,23 @@
 </head>
 
 <body>
-    <h1>User登録</h1>
+    <h1 class ='top'>User登録</h1>
+    <div id = 'registerUser'>
     学籍番号:<input id="tf1" value="" type="textfield">
     <br>
-    パスワード:<input id="tf2" value="" type="password">(公開されますので真面目なパスワードは入れないでください．)
+    パスワード:<input id="tf2" value="" type="password">
+    <br>(公開されますので真面目なパスワードは入れないでください．)
+    <br>
     <br>
     名前:<input id="tf3" value="" type="textfield">
     <br>
     ニックネーム:<input id="tf4" value="" type="textfield">
     <br>
-    <button onclick="button1Pressed()">登録</button>
+    <br>
+        <button onclick="button1Pressed()" class = 'rogin_button'>登録</button>
     <br>
     <p id="result"></p>
+    </div>>
 </body>
 
 </html>

@@ -1,0 +1,287 @@
+/* commentsiteのcss */
+
+#showyoutube{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+}
+
+#showyoutube iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /*境界線の打ち消し*/
+}
+
+#comments input{
+  border: 2px solid #2260d4;  /* 枠線 */
+  padding: 0.5em;          /* 内側の余白量 */
+}
+/* movie_index プルダウン */
+
+.cp_ipselect {
+  overflow: hidden; /* はみ出さない */
+  width: 30%; /* 横のサイズ */
+  /* margin: 2em auto;  */
+  text-align:right; /* 場所 */
+}
+.cp_ipselect select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer; /* カーソルを矢印に */
+  text-indent: 0.01px; 
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.cp_ipselect select::-ms-expand {
+  display: none;
+}
+
+.cp_ipselect.cp_sl04 {
+  position: relative;
+  border-radius: 2px;
+  border: 2px solid #2260d4;
+  /* border-radius: 50px; プルダウンを丸くする */
+  background: #ffffff;
+}
+.cp_ipselect.cp_sl04::before {
+  position: absolute;
+  top: 0.8em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #2260d4;
+  pointer-events: none;
+}
+.cp_ipselect.cp_sl04 select {
+  padding: 8px 38px 8px 8px;
+  /* color: #da3c41; */
+}
+
+
+/* リスト */
+
+ol.list1{
+  counter-reset:list;
+  list-style-type:none;
+  font: 14px/1.6 'arial narrow', sans-serif;
+  padding:0;
+}
+ol.list1 li{
+  position:relative;
+  padding: 0 0 0 20px;
+  margin: 7px 0 7px 0px;
+  font-weight: bold;
+  font-size:14px;
+  line-height: 30px;
+  border-bottom: dashed 1px #2260d4;
+}
+ol.list1 li:before{
+  counter-increment: list;
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0px;
+  height: 0;
+  width: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid #2260d4;
+  top: 50%;
+  -moz-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#zawawatop{
+  color: #364e96;
+  text-align: center;
+  padding: 10px;
+  border-top: solid 3px #364e96;
+  border-bottom: solid 3px #364e96;
+}
+
+.rogin{
+  text-align: center;
+  background: #f1f1f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+  width:50%;
+
+  margin: auto;
+  }
+
+
+
+.rogin .boxtitle{
+  font-size: 2em;
+  background-color: #5fc2f5 ;
+  padding : 4px;
+  text-align: center;
+  color: #FFF;
+}
+
+.rogin_item{
+  text-align: center;
+}
+
+.rogin_button{
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;/*色*/
+  border-radius: 4px;/*角の丸み*/
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  border: solid 2px #d27d00;/*線色*/
+}
+
+.rogin_button:active {
+  /*押したとき*/
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
+.footer{
+  text-align: center;
+  padding:20px ;
+  margin-top: 60px;
+  background-color: #FFCC99	;
+}
+
+.top{
+  color: #FF9900	;
+  text-align: center;
+  padding: 10px;
+  border-top: solid 3px #FF9900	;
+  border-bottom: solid 3px #FF9900	;
+
+}
+
+#title{
+  color: #009900		;
+  text-align: center;
+  padding: 10px;
+  border-top: solid 3px #009900		;
+  border-bottom: solid 3px #009900		;
+}
+
+.btn-flat-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-square-little-rich {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #03A9F4;/*色*/
+  border: solid 1px #0f9ada;/*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.btn-square-little-rich:active {
+  /*押したとき*/
+  border: solid 1px #03A9F4;
+  box-shadow: none;
+  text-shadow: none;
+}
+.btn-flat-bottom-border {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 5px 5px 5px;
+  text-decoration: none;
+  color: #FFF;
+  background: #a180dc;
+  transition: .4s;
+}
+
+.btn-flat-bottom-border > span {
+  border-bottom: solid 2px #FFF;
+}
+
+.btn-flat-bottom-border:hover {
+  background: #91b5fb;
+}
+
+#name {
+  border-bottom: solid 3px #ffc778;
+  position: relative;
+}
+#name:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px skyblue;
+  bottom: -3px;
+  width: 50%;
+}
+
+/*その他と主な共通部分は省略*/
+
+#reroad {
+  border-radius: 0;
+}
+
+#reroad:before,
+#reroad:after {
+  position: absolute;
+
+  width: 100%;
+  height: 2px;
+
+  content: '';
+  -webkit-transition: all .3s;
+  transition: all .3s;
+
+  background: #000;
+}
+
+#reroad:before {
+  top: 0;
+  left: 0;
+}
+
+#reroad:after {
+  right: 0;
+  bottom: 0;
+}
+#reroad:hover:before,
+#reroad:hover:after {
+  width: 0;
+}
+
+.icon{
+  padding-left: 20px;
+	line-height: 1.6em;
+	background: url(人物ボタン.png) left 0px top 3px no-repeat;
+	background-size: 30px auto;}
+
+  #registerUser{
+    text-align: center;
+  }

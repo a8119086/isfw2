@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="zawawa.css">
 
     <script>
         osql.requireLogin();
@@ -22,27 +23,27 @@
             var objects = await osql.connect(sql);
             var html
 
+            
             for (var i = 0; i < objects.length; i++) {
                 object = objects[i];
                 
                 html += `<option value="${i + 1}">${object.name}</option>`
             }
 
-            document.getElementById("course").innerHTML = html;
+            document.getElementById("course").innerHTML = '<option value="">授業を選択</option>' + html;
         }
         
         async function getMovies() {
-            var movie = document.getElementById("course").value
-            console.log(movie)
-            var sql = `select * from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${movie};`;
+            var course_id = document.getElementById("course").value
+            var sql = `select Movies.id as movie_id, title from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${course_id};`;
             var objects = await osql.connect(sql);
             var html
 
             for (var i = 0; i < objects.length; i++) {
                 object = objects[i];
-                var movie_id = i+1;
+                var movie_id = object.movie_id;
                 var addHtml = "?movie_id=" + movie_id;
-                html += `<li><a href="commentsite.html/${addHtml}">${object.title}</a></li>`
+                html += `<ol  class="list1"><li><a href="commentsite.html${addHtml}">${object.title}</a></li></ol>`
 
             }
 
@@ -68,9 +69,12 @@
 </head>
 
 <body>
-    <h1>ユーザトップ</h1>
+    <h1 class = 'top'>ユーザトップ</h1>
+    <div class="cp_ipselect cp_sl04">
     <select id = "course" name="course" onchange="getMovies()">
+        
     </select>
+    </div>
     <ul id="movies"></ul>
     <div id = "admin"></div>
 

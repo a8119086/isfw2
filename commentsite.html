@@ -1,50 +1,164 @@
-<!DOCTYPE html>
-
 <html>
 
 <head>
+    <h1 id="title"></h1>
+    <p id="name"></p>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
-    <link rel="stylesheet" href="css.css">
-
+    <script type="text/javascript" src="lib/zawawa.js"></script>
+    <link rel="stylesheet" href="zawawa.css">
     <script>
-        osql.requireLogin();
 
-        $().ready(function () {
-            movies();
-            comment();
-        });
-
-
-        function movies() {
-            var movie_id = osql.getParam('movie_id');
+        var player;
+        // ↓YouTube関連
+        async function playMovie() { //動画を再生する
+            console.log('playmovie');
+            var movie_id = parseInt(osql.getParam('movie_id'));
             var sql = `select * from Classes inner join Movies on Classes.id=Movies.class_id where Movies.id="${movie_id}";`;
             var objects = await osql.connect(sql);
+            var url = objects[0].URL;
+            console.log(url);
+            document.getElementById('showyoutube').innerHTML = `<iframe id="player" width="1080" height="630"
+        src="${url}?enablejsapi=1" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>`;
+        }
+        function onYouTubeIframeAPIReady() {
+            console.log('API ready');
+            player = new YT.Player('player', {
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+
+        function onPlayerReady(obj) {
+            console.log('ready');
+            console.log(obj);
+        }
+
+        function onPlayerStateChange(obj) {
+            console.log('changed');
+            console.log(obj);
+        }
+
+        function mySeekTo(sum) {
+            console.log(sum);
+            player.seekTo(sum, true);
+        }
+
+
+        $().ready(function () {
+            getTitle();
+            playMovie();
+            doSelect();
+        });
+
+        async function getTitle() {//タイトルを取得
+            var movie_id = parseInt(osql.getParam('movie_id'));
+            console.log(movie_id);
+            var sql = `select * from Classes inner join Movies on Classes.id=Movies.class_id where Movies.id="${movie_id}";`;
+            var objects = await osql.connect(sql);
+
+            var title = objects[0].name;
+            document.getElementById('title').innerHTML = title;
 
             var moviename = objects[0].title;
             var url = objects[0].URL;
             document.getElementById('name').innerHTML = moviename;
-
-            document.getElementById('youtube').innerHTML = '<iframe src="https://www.youtube.com/embed/vYfoxJlqRDQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         }
 
-        function comment() {
 
+        //コメント機能
+
+        async function inComment(to_id) { // コメントを取得する
+            var movie_id = parseInt(osql.getParam('movie_id'));
+            var student_id = sessionStorage.getItem('student_id');
+
+            if (to_id == 0) { //新規コメントだった時
+                var time = document.getElementById('selecttime').value;
+                var newcomment = document.getElementById('newcomment').value;
+            } else { //リプライだった時
+                var time = "";
+                var newcomment = document.getElementById('replycomment').value;
+            }
+            console.log(newcomment);
+            console.log(student_id);
+            var sql = `insert into Comments (student_id, comment, movie_id, point_time, to_id, time) values("${student_id}", "${newcomment}", "${movie_id}", "${time}","${to_id}", now());`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            document.getElementById('selecttime').value = '';
+            document.getElementById('newcomment').value = '';
+        }
+
+        function reroad() {
+            doSelect();
+        }
+
+        async function doSelect() { //コメント表示
+            var movie_id = parseInt(osql.getParam('movie_id'));
+            var sql = `select * from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by id desc limit 20;`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var html = '';
+            html = html + `<ul>`;
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                var time = object.point_time;
+                var separate = time.split(':');//「, (カンマ)」で区切って分割する
+                // console.log(separate[0]);
+                var sum = parseInt(separate[0]) * 3600 + parseInt(separate[1]) * 60 + parseInt(separate[2]);
+                console.log(sum);
+                console.log(objects[i].id);
+                
+                if (object.to_id == 0) {
+
+                    html = html + `<li><button onclick="mySeekTo(${sum})">${time}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                    for (var j = 0; j < objects.length; j++) {
+                        html = html + `<ol >`;
+                        if (objects[i].id == objects[j].to_id) {
+                            // console.log(objects[j].nickname);
+                            // console.log(objects[j].comment);
+                            html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                        } else {
+                        }
+                        html = html + `</ol>`;
+                    }
+                    html = html + `</li>`;
+                }
+            }
+            html = html + '</ul>';
+            document.getElementById('result').innerHTML = html;
+        }
+
+        async function replyButton(i, to_id) { //リプライする
+            document.getElementById(`reply${i}`).innerHTML = `<input id='replycomment' value="返信を入力してください" type="textfield" title="selecttime" style="color:#888;" onfocus="inputFocus(this)" onblur="inputBlur(this)"> <button onclick="inComment(${to_id})">送信</button>`;
         }
 
 
     </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
-    <h1 id="title">データベース基礎</h1>
-    <p id="name">第一回</p>
-    <hr>
-    <div>
-        <p id="youtube"></p>
+    <p id="showyoutube"></p>
+    <div id="comments">
+        <input id="selecttime" value="00:00:00" type="textfield" title="selecttime" style="color:#888;"
+            onfocus="inputFocus(this)" onblur="inputBlur(this)">
+        <input id="newcomment" value="コメントを入力する" type="textfield" title="selecttime" style="color:#888;"
+            onfocus="inputFocus(this)" onblur="inputBlur(this)">
+        <button onclick="inComment(0)"  class="btn-flat-bottom-border">コメントする</button>
     </div>
+    <button onclick="reroad()" id="reroad">再読み込み</button>
+    <p id="result">Roading...</p>
+
+
+
 </body>
 
 </html>
