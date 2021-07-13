@@ -24,7 +24,7 @@
 
 .cp_ipselect {
   overflow: hidden; /* はみ出さない */
-  width: 15%; /* 横のサイズ */
+  width: 30%; /* 横のサイズ */
   /* margin: 2em auto;  */
   text-align:right; /* 場所 */
 }
@@ -162,4 +162,82 @@ ol.list1 li:before{
   padding:20px ;
   margin-top: 60px;
   background-color: #FFCC99	;
+}
+
+.usertop{
+  color: #FF9900	;
+  text-align: center;
+  padding: 10px;
+  border-top: solid 3px #FF9900	;
+  border-bottom: solid 3px #FF9900	;
+
+}
+
+#title{
+  color: #009900		;
+  text-align: center;
+  padding: 10px;
+  border-top: solid 3px #009900		;
+  border-bottom: solid 3px #009900		;
+}
+
+.btn-flat-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-square-little-rich {
+  position: relative;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  color: #FFF;
+  background: #03A9F4;/*色*/
+  border: solid 1px #0f9ada;/*線色*/
+  border-radius: 4px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.btn-square-little-rich:active {
+  /*押したとき*/
+  border: solid 1px #03A9F4;
+  box-shadow: none;
+  text-shadow: none;
+}
+.btn-flat-bottom-border {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 5px 5px 5px;
+  text-decoration: none;
+  color: #FFF;
+  background: #a180dc;
+  transition: .4s;
+}
+
+.btn-flat-bottom-border > span {
+  border-bottom: solid 2px #FFF;
+}
+
+.btn-flat-bottom-border:hover {
+  background: #91b5fb;
+}
+
+#name {
+  border-bottom: solid 3px #ffc778;
+  position: relative;
+}
+#name:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px skyblue;
+  bottom: -3px;
+  width: 50%;
 }

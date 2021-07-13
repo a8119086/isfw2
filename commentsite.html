@@ -46,9 +46,9 @@
             console.log(obj);
         }
 
-        function mySeekTo(separate) {
-            console.log(separate);
-            player.seekTo(separate, true);
+        function mySeekTo(sum) {
+            console.log(sum);
+            player.seekTo(sum, true);
         }
 
 
@@ -111,16 +111,20 @@
                 var object = objects[i];
                 var time = object.point_time;
                 var separate = time.split(':');//「, (カンマ)」で区切って分割する
-                // console.log(separate);
+                // console.log(separate[0]);
+                var sum = parseInt(separate[0]) * 3600 + parseInt(separate[1]) * 60 + parseInt(separate[2]);
+                console.log(sum);
                 console.log(objects[i].id);
+                
                 if (object.to_id == 0) {
-                    html = html + `<li><button onclick="mySeekTo(${separate[1]})">${time}</button>` + object.nickname + '.' + object.comment + '.' + object.time + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+
+                    html = html + `<li><button onclick="mySeekTo(${sum})">${time}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
                     for (var j = 0; j < objects.length; j++) {
                         html = html + `<ol>`;
                         if (objects[i].id == objects[j].to_id) {
                             // console.log(objects[j].nickname);
                             // console.log(objects[j].comment);
-                            html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + objects[j].time + `</p>`;
+                            html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
                         } else {
                         }
                         html = html + `</ol>`;
@@ -143,13 +147,12 @@
 
 <body>
     <p id="showyoutube"></p>
-    <button onclick="mySeekTo(23)">00:23</button>
     <div id="comments">
-        <input id="selecttime" value="00:00" type="textfield" title="selecttime" style="color:#888;"
+        <input id="selecttime" value="00:00:00" type="textfield" title="selecttime" style="color:#888;"
             onfocus="inputFocus(this)" onblur="inputBlur(this)">
         <input id="newcomment" value="コメントを入力する" type="textfield" title="selecttime" style="color:#888;"
             onfocus="inputFocus(this)" onblur="inputBlur(this)">
-        <button onclick="inComment(0)">コメントする</button>
+        <button onclick="inComment(0)"  class="btn-flat-bottom-border">コメントする</button>
     </div>
     <button onclick="reroad()" id="reroad">再読み込み</button>
     <p id="result">Roading...</p>
