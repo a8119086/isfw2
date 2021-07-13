@@ -102,7 +102,7 @@
 
         async function doSelect() { //コメント表示
             var movie_id = parseInt(osql.getParam('movie_id'));
-            var sql = `select * from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by id desc limit 20;`;
+            var sql = `select * from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by point_time desc limit 20;`;
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
