@@ -107,37 +107,82 @@
         }
 
         async function doSelect() { //コメント表示
+            var admin_flag = sessionStorage.getItem('admin_flag');
             var movie_id = parseInt(osql.getParam('movie_id'));
-            var sql = `select * from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by point_time asc limit 20;`;
+            //student_idを一つにした(Comments.student_id as student_idで)
+            var sql = `select id, Comments.student_id as student_id, comment, movie_id, point_time, to_id, time, name, nickname, password  from Comments inner join Users on Comments.student_id = Users.student_id where movie_id = "${movie_id}" order by point_time asc limit 20;`
             var objects = await osql.connect(sql);
             console.log(objects);
-            var html = '';
-            html = html + `<ul>`;
-            for (var i = 0; i < objects.length; i++) {
-                var object = objects[i];
-                var time = object.point_time;
-                console.log(objects[i].id);
-                
-                if (object.to_id == 0) {
-                    var hour = Math.floor(time / 3600);
-                    var min = Math.floor((time % 3600)/60);
-                    var sec = Math.floor((time%3600)% 60);
-                    
-                    html = html + `<li><button onclick="mySeekTo(${time})">${hour}:${min}:${sec}</button>` + object.nickname + '.' + object.comment + '.' +  `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
-                    for (var j = 0; j < objects.length; j++) {
-                        html = html + `<ol >`;
-                        if (objects[i].id == objects[j].to_id) {
-                            // console.log(objects[j].nickname);
-                            // console.log(objects[j].comment);
-                            html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+
+            if (admin_flag == "true") {
+                //管理者だったら学籍番号、本名表示
+                var html = '';
+                html = html + `<ul>`;
+                for (var i = 0; i < objects.length; i++) {
+                    var object = objects[i];
+                    var time = object.point_time;
+                    var separate = time.split(':');//「, (カンマ)」で区切って分割する
+
+                    console.log(objects[i].id);
+
+                    if (object.to_id == 0) {
+                        var hour = Math.floor(time / 3600);
+                        var min = Math.floor((time % 3600) / 60);
+                        var sec = Math.floor((time % 3600) % 60);
+
+                        html = html + `<li><button onclick="mySeekTo(${time})">${hour}:${min}:${sec}</button>` + object.student_id + '.' + object.name + '.' +  object.comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                        for (var j = 0; j < objects.length; j++) {
+                            html = html + `<ol >`;
+                            if (objects[i].id == objects[j].to_id) {
+                                // console.log(objects[j].nickname);
+                                // console.log(objects[j].comment);
+                                html = html + `<li>` + objects[j].student_id + '.' + objects[j].name + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                            } else {
+                            }
+                            html = html + `</ol>`;
                         }
-                        html = html + `</ol>`;
+                        html = html + `</li>`;
                     }
-                    html = html + `</li>`;
                 }
+                html = html + '</ul>';
+                document.getElementById('result').innerHTML = html;
+               
+                
+            } else {
+                //生徒だったらニックネーム表示
+                var html = '';
+                html = html + `<ul>`;
+                for (var i = 0; i < objects.length; i++) {
+                    var object = objects[i];
+                    var time = object.point_time;
+                    var separate = time.split(':');//「, (カンマ)」で区切って分割する
+
+                    console.log(objects[i].id);
+
+                    if (object.to_id == 0) {
+                        var hour = Math.floor(time / 3600);
+                        var min = Math.floor((time % 3600) / 60);
+                        var sec = Math.floor((time % 3600) % 60);
+
+                        html = html + `<li><button onclick="mySeekTo(${time})">${hour}:${min}:${sec}</button>` + object.nickname + '.' + object.comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                        for (var j = 0; j < objects.length; j++) {
+                            html = html + `<ol >`;
+                            if (objects[i].id == objects[j].to_id) {
+                                // console.log(objects[j].nickname);
+                                // console.log(objects[j].comment);
+                                html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                            } else {
+                            }
+                            html = html + `</ol>`;
+                        }
+                        html = html + `</li>`;
+                    }
+                }
+                html = html + '</ul>';
+                document.getElementById('result').innerHTML = html;
+                
             }
-            html = html + '</ul>';
-            document.getElementById('result').innerHTML = html;
+            
         }
 
         async function replyButton(i, to_id) { //リプライする
