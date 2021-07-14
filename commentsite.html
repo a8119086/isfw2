@@ -116,8 +116,6 @@
             for (var i = 0; i < objects.length; i++) {
                 var object = objects[i];
                 var time = object.point_time;
-                var separate = time.split(':');//「, (カンマ)」で区切って分割する
-                
                 console.log(objects[i].id);
                 
                 if (object.to_id == 0) {
@@ -132,7 +130,6 @@
                             // console.log(objects[j].nickname);
                             // console.log(objects[j].comment);
                             html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
-                        } else {
                         }
                         html = html + `</ol>`;
                     }
