@@ -119,6 +119,9 @@ ol.list1 li:before{
   border-top: solid 3px #364e96;
   border-bottom: solid 3px #364e96;
 }
+#zawawatop h1{
+  font-size: 50px;
+}
 
 .rogin{
   text-align: center;
