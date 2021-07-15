@@ -4,9 +4,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="zawawa.css">
 
     <script>
         osql.requireLogin();
@@ -47,7 +47,8 @@
 </head>
 
 <body>
-    <h1>動画登録</h1>
+    <div class ='register_mov'>
+    <h1 class = 'top'>動画登録</h1>
     <select id="course" name="course" >
         <option value="">授業を選択</option>
     </select>
@@ -55,9 +56,11 @@
     タイトル:<input id="title" value="" type="textfield">
     <br>
     (埋め込み用)URL:<input id="URL" value="" type="textfield">
-    <button onclick="button1Pressed()">登録</button>
+    <br><br>
+    <button onclick="button1Pressed()" class='rogin_button'>登録</button>
     <br>
     <p id="result"></p>
+    </div>
 </body>
 
 </html>
