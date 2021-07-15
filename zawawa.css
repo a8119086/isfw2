@@ -20,8 +20,10 @@
 
 #comments input{
   border: 2px solid #2260d4;  /* 枠線 */
-  padding: 0.5em;          /* 内側の余白量 */
+  padding: 0.5em;  
 }
+
+
 /* movie_index プルダウン */
 
 .cp_ipselect {
@@ -123,7 +125,6 @@ ol.list1 li:before{
   background: #f1f1f1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
   width:50%;
-
   margin: auto;
   }
 
@@ -286,4 +287,35 @@ ol.list1 li:before{
 
   #registerUser{
     text-align: center;
+    width: 50%;
+    padding: 0.5em 1em;
+    margin: auto;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+
   }
+
+.table_list{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+  border: 1px solid #ccc;
+  line-height: 1.5;
+    width: 50%;
+    padding: 50px;
+    }
+ 
+.table_top{
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  background: #FFCCFF	;
+  color: #ffffff;
+}
+
+table.table_list td{
+  border: solid #444444	;
+}

@@ -4,9 +4,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+     <link rel="stylesheet" href="zawawa.css">
+
 
     <script>
         osql.requireLogin();
@@ -36,8 +37,17 @@
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
-            html = html + '<table border="1">';
-            for (var i = 0; i < objects.length; i++) {
+            html = html + '<table class="table_list">';
+            
+                html = html + '<tr>';
+                html = html + '<td clas= "td_list">' + '学籍番号'+ '</td>'
+                html = html + '<td class= "td_list">' + '名前'+ '</td>'
+                html = html + '<td>' + 'ニックネーム' + '</td>'
+                html = html + '<td>' + '' + '</td>'
+
+
+                html = html + '</tr>';
+                for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
                 html = html + '<td>' + object.student_id + '</td>';
@@ -55,7 +65,7 @@
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
-            html = html + '<table border="1">';
+            html = html + '<table class="table_list">';
             for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
@@ -75,7 +85,9 @@
 </head>
 
 <body>
-    <h1>Users</h1>
+    <h1 class='top'>Users</h1>
+    <br>
+    <br>
     <p id="result">xxxx</p>
 </body>
 
