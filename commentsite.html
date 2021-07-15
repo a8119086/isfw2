@@ -170,7 +170,7 @@
                             if (objects[i].id == objects[j].to_id) {
                                 // console.log(objects[j].nickname);
                                 // console.log(objects[j].comment);
-                                html = html + `<li>` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
+                                html = html + `<li style="list-style: none;">` + objects[j].nickname + '.' + objects[j].comment + '.' + `<button onclick="replyButton(${i}, ${object.id}), style.display='none'">返信</button><p id="reply${i}" ></p>`;
                             } else {
                             }
                             html = html + `</ol>`;
