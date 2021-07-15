@@ -20,7 +20,7 @@
             var objects = await osql.connect(sql);
             var url = objects[0].URL;
             console.log(url);
-            document.getElementById('showyoutube').innerHTML = `<iframe id="player" width="1080" height="630"
+            document.getElementById('showyoutube').innerHTML = `<iframe id="player" width="854" height="480"
         src="${url}?enablejsapi=1" title="YouTube video player"
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>`;
