@@ -37,16 +37,17 @@
             var course_id = document.getElementById("course").value
             var sql = `select Movies.id as movie_id, title from Movies inner join Classes on Movies.class_id = Classes.id where Classes.id = ${course_id};`;
             var objects = await osql.connect(sql);
-            var html
-
+            var html = '';
+            html = html + `<ul>`;
             for (var i = 0; i < objects.length; i++) {
                 object = objects[i];
                 var movie_id = object.movie_id;
                 var addHtml = "?movie_id=" + movie_id;
+
                 html += `<ol  class="list1"><li><a href="commentsite.html${addHtml}">${object.title}</a></li></ol>`
 
             }
-
+            html = html + '</ul>';
             document.getElementById("movies").innerHTML = html;
         }
 
@@ -75,7 +76,7 @@
         
     </select>
     </div>
-    <ul id="movies"></ul>
+    <p id="movies"></p>
     <div id = "admin"></div>
 
 </body>
