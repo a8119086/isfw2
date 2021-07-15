@@ -20,8 +20,10 @@
 
 #comments input{
   border: 2px solid #2260d4;  /* 枠線 */
-  padding: 0.5em;          /* 内側の余白量 */
+  padding: 0.5em;  
 }
+
+
 /* movie_index プルダウン */
 
 .cp_ipselect {
@@ -123,7 +125,6 @@ ol.list1 li:before{
   background: #f1f1f1;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
   width:50%;
-
   margin: auto;
   }
 
@@ -248,6 +249,20 @@ ol.list1 li:before{
 
 #reroad {
   border-radius: 0;
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 8px 10px 5px 10px;
+  text-decoration: none;
+  color: #FFA000;
+  background: #fff1da;
+  border-bottom: solid 4px #FFA000;
+  border-radius: 15px 15px 0 0;
+  transition: .4s;
+}
+#reroad:hover {
+  background: #ffc25c;
+  color: #FFF;
 }
 
 #reroad:before,
@@ -261,7 +276,7 @@ ol.list1 li:before{
   -webkit-transition: all .3s;
   transition: all .3s;
 
-  background: #000;
+  /*background: #000;*/
 }
 
 #reroad:before {
@@ -286,4 +301,56 @@ ol.list1 li:before{
 
   #registerUser{
     text-align: center;
+    width: 70%;
+    padding: 0.5em 1em;
+    margin: auto;
+    color: #5d627b;
+    background: white;
+    border-top: solid 5px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+
   }
+
+.table_list{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    text-align: center;
+    border-spacing: 0;
+    background: #cdf4f0;
+    }
+ 
+.table_list tr {
+ padding: 10px;
+ background:#EEEEEE	;
+ border: solid 3px #778ca3;
+}
+.table_list  tr:nth-child(2n+1) {
+ background: #e9faf9;
+}
+.table_list  th {
+ padding: 10px;
+ border: solid 1px #ffffff;
+ background: #778ca3;
+ color: #ffffff;
+}
+.table_list  td {
+ padding: 10px;
+ border: solid 1px #ffffff;
+}
+
+.box9 {
+  text-align: center;
+    width: 50%;
+    padding: 0.5em 1em;
+    margin: auto;
+    color: #ff7d6e;
+    background: #ffebe9;
+    border-top: solid 10px #ff7d6e;
+}
+.box9 p {
+    margin: 0; 
+    line-height:20%;
+}
+
+
